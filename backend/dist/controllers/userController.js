@@ -24,7 +24,7 @@ export const userSignup = async (req, res, next) => {
         await user.save();
         return res.status(201).json({
             msg: "user created successfully",
-            user
+            id: user._id
         });
     }
     catch (err) {

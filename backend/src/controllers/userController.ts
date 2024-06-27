@@ -39,7 +39,7 @@ export const userSignup =async(req,res,next)=>{
 
         return res.status(201).json({
             msg:"user created successfully",
-            user
+            id:user._id
         })
 
     }
