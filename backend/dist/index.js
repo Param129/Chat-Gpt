@@ -1,6 +1,6 @@
 import { connectDB } from "./DB/connection.js";
 import app from "./app.js";
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
     app.listen(PORT, () => {
         console.log('server is started && DB is connected');

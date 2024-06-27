@@ -12,7 +12,7 @@ import appRouter from "./routes/mainRoutes.js";
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use("api/v1/",appRouter)
+app.use("/gpt/v1/",appRouter)
 
 
 export default app;
