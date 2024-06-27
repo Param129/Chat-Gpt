@@ -4,8 +4,10 @@ import { config } from "dotenv";
 config();
 import morgan from "morgan";
 import appRouter from "./routes/mainRoutes.js";
+import cookieParser from "cookie-parser";
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use("/gpt/v1/", appRouter);
 export default app;
 //mongodb+srv://paramtomar01:PARAMtomar123@cluster0.dis2nul.mongodb.net
