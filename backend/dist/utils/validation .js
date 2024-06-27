@@ -18,9 +18,15 @@ export const validate = (validations) => {
         }
     };
 };
-export const signupValidator = [
-    body("name").notEmpty().withMessage("Name is required"),
+export const loginValidator = [
     body("email").trim().isEmail().withMessage("Email is required"),
     body("password").trim().isLength({ min: 6 }).withMessage("Password is required"),
+];
+export const signupValidator = [
+    body("name").notEmpty().withMessage("Name is required"),
+    // body("email").trim().isEmail().withMessage("Email is required"),
+    // body("password").trim().isLength({min:6}).withMessage("Password is required"),
+    // instead of above we can use
+    ...loginValidator,
 ];
 //# sourceMappingURL=validation%20.js.map
