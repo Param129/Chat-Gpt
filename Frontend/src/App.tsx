@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Chat from "./pages/Chat"
+import { useAuth } from "./context/AuthContext"
 
 
 function App() {
