@@ -1,4 +1,6 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {loginUser,signupUser,checkAuthStatus,logoutUser} from "../helper/api-communicator"
+import { ascetic } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 // definetype the variable that we want for authentication
 type User = {
@@ -26,21 +28,40 @@ export const AuthProvider = ({children}:{children: ReactNode})=>{
     const [isLoggedIn,setisLoggedIn] = useState(false);
 
 
-    useEffect(()=>{
-        //fetch if user cokies are valid then skip login
-    },[]);
+    useEffect(() => {
+        // fetch if the user's cookies are valid then skip login
+        async function checkStatus() {
+          const data = await checkAuthStatus();
+          if (data) {
+            setUser({ email: data.email, name: data.name });
+            setisLoggedIn(true);
+          }
+        }
+        checkStatus();
+      }, []);
 
 
     const login = async(email:string,password:string)=>{
-
+        const data = await loginUser(email, password);
+        if (data) {
+      setUser({ email: data.email, name: data.name });
+      setisLoggedIn(true);
+    }
     }
 
     const signup=async(name:string,email:string,password:string)=>{
-
+        const data = await signupUser(name, email, password);
+    if (data) {
+      setUser({ email: data.email, name: data.name });
+      setisLoggedIn(true);
+    }
     }
 
     const logout=async()=>{
-
+        await logoutUser();
+        setisLoggedIn(false);
+        setUser(null);
+        window.location.reload();
     }
 
 
